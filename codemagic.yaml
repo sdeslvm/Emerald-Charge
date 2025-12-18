@@ -1,60 +1,98 @@
 workflows:
-    ios-workflow:
-      name: iOS Workflow
-      environment:
-        groups:
-          - app_store_credentials # <-- (APP_STORE_CONNECT_ISSUER_ID, APP_STORE_CONNECT_KEY_IDENTIFIER, APP_STORE_CONNECT_PRIVATE_KEY)
-          - certificate_credentials # <-- (CERTIFICATE_PRIVATE_KEY)
-        vars:
-          XCODE_PROJECT: "ZMTemplate.xcodeproj"
-          XCODE_SCHEME: "ZMTemplate"
-          BUNDLE_ID: "com.emeraldcharge.play"
-          APP_STORE_APPLE_ID: 6755790079
-#          CERTIFICATE_PRIVATE_KEY_PASSWORD: "700700"
-        xcode: latest
-        cocoapods: default
-      triggering:
-        events:
-          - push
-          - tag
-          - pull_request
-        branch_patterns:
-          - pattern: 'develop'
-            include: true
-            source: true
-      scripts:
-        - name: Set up keychain
-          script: keychain initialize
-        - name: Fetch signing files
-          script: app-store-connect fetch-signing-files $BUNDLE_ID --type IOS_APP_STORE --platform=IOS --create --certificate-key-password='700700'
-        - name: Use system default keychain
-          script: keychain add-certificates
-        - name: Fetch signing files (NotificationService)
-          script: app-store-connect fetch-signing-files com.emeraldcharge.play.NotificationService --type IOS_APP_STORE --platform=IOS --create 
-        - name: Set up code signing
-          script: xcode-project use-profiles
-        - name: Increment build number
-          script: agvtool new-version -all $(($(app-store-connect get-latest-testflight-build-number "$APP_STORE_APPLE_ID") + 1))
-        - name: Build ipa
-          script: xcode-project build-ipa --project "$XCODE_PROJECT" --scheme "$XCODE_SCHEME"
-      artifacts:
-        - build/ios/ipa/*.ipa
-        - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
-      publishing:
-        app_store_connect:
-            api_key: $APP_STORE_CONNECT_PRIVATE_KEY
-            key_id: $APP_STORE_CONNECT_KEY_IDENTIFIER
-            issuer_id: $APP_STORE_CONNECT_ISSUER_ID
-            submit_to_testflight: true
-        email:
-            recipients:
-              - someEmail@rmail.com
-            notify:
-              success: true
-              failure: true
-        slack:
-            channel: '#builds'
-            notify_on_build_start: true
-            notify:
-              success: false
-              failure: false
+  ios-workflow:
+    name: iOS Workflow
+    environment:
+      groups:
+        - app_store_credentials
+        - certificate_credentials
+      vars:
+        XCODE_PROJECT: "ZMTemplate.xcodeproj"
+        XCODE_SCHEME: "ZMTemplate"
+        BUNDLE_ID: "com.emeraldcharge.play"
+        APP_STORE_APPLE_ID: 6755790079
+        APP_STORE_CONNECT_KEY_IDENTIFIER: "ZA28TSY69Z"
+        APP_STORE_CONNECT_ISSUER_ID: "beb243c4-5f02-45de-bd90-547f1e77e9bb"
+        CERTIFICATE_PRIVATE_KEY_PASSWORD: "700700"
+        CERTIFICATE_PRIVATE_KEY: |-
+          -----BEGIN RSA PRIVATE KEY-----
+          Proc-Type: 4,ENCRYPTED
+          DEK-Info: AES-128-CBC,09CE28C62D74AE6AC3734A25D9FA6750
+          
+          wh66usn1PInJOzlhUHu2p/RRUd1m9Lq0NbR0d77BH+DWTYa2ov5XmWSbz1aZyQvz
+          d/+8KakMIbI8OUOmKQDSmMamcS5SuLyvlCzQWBvP4VCGDUl5ZU2XPXke5bbp76Zx
+          LO65OhBKgyWFmnDliJJY3eGrIlrrtajANl/8/bm0ySF0ePcfHMOqUth7TOLejLuS
+          FA/Q/CJHQyJp7Sxv6rIuqk8CkkcdTX4F/ErzTOZ8AfKt/gEZScZsNTLprFT8DvpX
+          hxLtZgsBPmQSS+SrjeZONVBK/tep9LlQXwwic/Wq18XpJRvQ6+MWHS3P+0Pk+asj
+          YVZ937gBxcUB/OedQycW6Z84uMP/DWWXJNGLdUbWpl6eG3WD4G+BRadSWOHAz4oK
+          WjnBeO/Ah4kZVXaRjczHNrsC/H74IRukaq3LvSB+MjOOH3bbXz+DBq89RkPDWcBW
+          ieLX2rcQbN7v6RBCX6XIEJArAnn8MStLvWGMdIZD0xpUT4OQn5OgVxHrNROu4fem
+          IoLqzLt3Et+mfMFMyCs/iJPHofwH/7eIrN+1bHWJJn8oo4vf4q48e7GDFfmhtjvu
+          kcGzGF6CnYqhz6wKugsEtz6+1yVk8OKFBZ5g5neQeOpNazEWidcCaP7LoFO6V/SY
+          Dvd4BoIXSUyROHT8CVNlf7nFsRjoKV7tB/NdxcLxMzkhCytppv2viNngQmLQjmmD
+          WBUT60Epvu6dUFcALFMf0HnuPEdWb4XDWcYXb4ei9//sr+s3rKJmtRfkOz3jkhSd
+          lnhUHk1xo+vo+4EuUbmHGA+ZuoHooX79FaX5u4eHCDvYQAjOqunHM36cUNE5Epjm
+          DGalEjjYpeukM1mN5CksWcUEEOFydkg8d23nqohQkfwGcaXostRHg9kQJDw+3fKK
+          6cuHEUSjCDzHgM4yRFrHwfH/ziBpplX7yPvfNSShOa0JlENoppVIff+cH5H0yK8W
+          PgxjERrj9S52wsTVVyUaQJNIUsmQylxjtjkJ+hXQfcMxGm2Yiz5YdasDbg5wWXvM
+          y35ydzN1kyro5pftYUQCaafGn6YyyAm0oE7EsgPmlq37z2wUxdlMoJuGlpaLiVs2
+          QT/g9ydc+5Gy3HQsjsDYhI5WLP82ZtrSW+E794k75Y3zTipg0zqSMSSS3V1p3y2r
+          w9a5fMIlLvQIrMcWkzfJzm1u/E/GCFE7jwzJ1A1eW+Fdsn7N9vP/DoL633ZkV1M+
+          SaslpL8PafM5cSeClVWn/UuPhGG0y1vAT1HTpiwxN1U6ycRaDCQG4yePa0eBSCIq
+          1AC8qiiYMu2iPCipWcktGojPE/1tK732c0EDpCB5BfjlETgDbNpbZ9zs4IIna0sR
+          ahjOTjpKue8CXvF54Ky0b9uYzYYM4qYQaV8v3UJZu/z3DBo/MTMME+zlsnfJdyh2
+          I1TXpl7YDILzs1IK923NifcBcuxM1i/6LIUfLBDZqf+Hk2yAyZiUJEHHCXHQxcAu
+          ty0yIZcEtCdPtBaK5e47qsSd26LgrsVFMQsPVT45mNskm/65V+55rrOodnRtb064
+          o9zdN4A2K0rroS5efiAVOmSYo+KXjJB7+CsgA2OSLgNwWSbH6RSC0TJGPyQnC8ew
+          -----END RSA PRIVATE KEY-----
+        APP_STORE_CONNECT_PRIVATE_KEY: |-
+          -----BEGIN PRIVATE KEY-----
+          MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQgnzgOf0LaYehOESoZ
+          ubvAJWaRpf4K7q5HGBn7qHeqXyWgCgYIKoZIzj0DAQehRANCAAQHAnl4UFlT+2BG
+          VESLTsjfokmYvA6EZsjJoN0YgMrgExSt9FvyU7WuoO15nVwBsu8uQ+v+aSzJFmRc
+          j6wFkzzN
+          -----END PRIVATE KEY-----
+    triggering:
+      events:
+        - push
+        - tag
+        - pull_request
+      branch_patterns:
+        - pattern: 'main'
+          include: true
+          source: true
+    scripts:
+      - name: Set up keychain
+        script: keychain initialize
+      - name: Fetch signing files
+        script: app-store-connect fetch-signing-files $BUNDLE_ID --type IOS_APP_STORE --platform=IOS --create --certificate-key-password="$CERTIFICATE_PRIVATE_KEY_PASSWORD"
+      - name: Fetch signing files (NotificationService)
+        script: app-store-connect fetch-signing-files com.emeraldcharge.play.NotificationService --type IOS_APP_STORE --platform=IOS --create --certificate-key-password="$CERTIFICATE_PRIVATE_KEY_PASSWORD"
+      - name: Use system default keychain
+        script: keychain add-certificates
+      - name: Set up code signing
+        script: xcode-project use-profiles
+      - name: Increment build number
+        script: agvtool new-version -all $(($(app-store-connect get-latest-testflight-build-number "$APP_STORE_APPLE_ID") + 1))
+      - name: Build ipa
+        script: xcode-project build-ipa --project "$XCODE_PROJECT" --scheme "$XCODE_SCHEME"
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
+    publishing:
+      app_store_connect:
+        api_key: $APP_STORE_CONNECT_PRIVATE_KEY
+        key_id: $APP_STORE_CONNECT_KEY_IDENTIFIER
+        issuer_id: $APP_STORE_CONNECT_ISSUER_ID
+        submit_to_testflight: true
+      email:
+        recipients:
+          - someEmail@rmail.com
+        notify:
+          success: true
+          failure: true
+      slack:
+        channel: '#builds'
+        notify_on_build_start: true
+        notify:
+          success: false
+          failure: false
