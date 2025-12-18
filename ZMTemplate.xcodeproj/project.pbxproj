@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		63174A9D2EF489F3000BDD5E /* NotificationService.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 63174A962EF489F3000BDD5E /* NotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		63174AEF2EF48A98000BDD5E /* ZMTemplate.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 63174AEE2EF48A98000BDD5E /* ZMTemplate.xcconfig */; };
+		63174AF02EF48A98000BDD5E /* ZMTemplate.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 63174AEE2EF48A98000BDD5E /* ZMTemplate.xcconfig */; };
 		FAD891A52EEBAA9E004DCA0E /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = FAD891A42EEBAA9E004DCA0E /* FirebaseCore */; };
 		FAD891A72EEBAA9E004DCA0E /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = FAD891A62EEBAA9E004DCA0E /* FirebaseDatabase */; };
 		FAD891A92EEBAA9E004DCA0E /* FirebaseInstallations in Frameworks */ = {isa = PBXBuildFile; productRef = FAD891A82EEBAA9E004DCA0E /* FirebaseInstallations */; };
@@ -16,13 +19,44 @@
 		FAEA63502EF261410033A6AD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAEA634F2EF261410033A6AD /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		63174A9B2EF489F3000BDD5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAD8917E2EEB9B54004DCA0E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 63174A952EF489F3000BDD5E;
+			remoteInfo = NotificationService;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		63174A682EF48992000BDD5E /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				63174A9D2EF489F3000BDD5E /* NotificationService.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		63174A962EF489F3000BDD5E /* NotificationService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		63174AEE2EF48A98000BDD5E /* ZMTemplate.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ZMTemplate.xcconfig; sourceTree = "<group>"; };
 		FAD891862EEB9B54004DCA0E /* ZMTemplate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZMTemplate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAD8921D2EEBB670004DCA0E /* AppInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AppInfo.plist; sourceTree = "<group>"; };
 		FAEA634F2EF261410033A6AD /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		63174A972EF489F3000BDD5E /* NotificationService */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = NotificationService;
+			sourceTree = "<group>";
+		};
 		FAD891882EEB9B54004DCA0E /* ZMTemplate */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = ZMTemplate;
@@ -31,6 +65,13 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		63174A932EF489F3000BDD5E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FAD891832EEB9B54004DCA0E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -49,8 +90,10 @@
 		FAD8917D2EEB9B54004DCA0E = {
 			isa = PBXGroup;
 			children = (
+				63174AEE2EF48A98000BDD5E /* ZMTemplate.xcconfig */,
 				FAD8921F2EEBB670004DCA0E /* Config */,
 				FAD891882EEB9B54004DCA0E /* ZMTemplate */,
+				63174A972EF489F3000BDD5E /* NotificationService */,
 				FAD891872EEB9B54004DCA0E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -59,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				FAD891862EEB9B54004DCA0E /* ZMTemplate.app */,
+				63174A962EF489F3000BDD5E /* NotificationService.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -75,6 +119,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		63174A952EF489F3000BDD5E /* NotificationService */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 63174A9F2EF489F3000BDD5E /* Build configuration list for PBXNativeTarget "NotificationService" */;
+			buildPhases = (
+				63174A922EF489F3000BDD5E /* Sources */,
+				63174A932EF489F3000BDD5E /* Frameworks */,
+				63174A942EF489F3000BDD5E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				63174A972EF489F3000BDD5E /* NotificationService */,
+			);
+			name = NotificationService;
+			packageProductDependencies = (
+			);
+			productName = NotificationService;
+			productReference = 63174A962EF489F3000BDD5E /* NotificationService.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		FAD891852EEB9B54004DCA0E /* ZMTemplate */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FAD891912EEB9B56004DCA0E /* Build configuration list for PBXNativeTarget "ZMTemplate" */;
@@ -82,10 +148,12 @@
 				FAD891822EEB9B54004DCA0E /* Sources */,
 				FAD891832EEB9B54004DCA0E /* Frameworks */,
 				FAD891842EEB9B54004DCA0E /* Resources */,
+				63174A682EF48992000BDD5E /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				63174A9C2EF489F3000BDD5E /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				FAD891882EEB9B54004DCA0E /* ZMTemplate */,
@@ -109,9 +177,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2610;
+				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 2610;
 				TargetAttributes = {
+					63174A952EF489F3000BDD5E = {
+						CreatedOnToolsVersion = 16.2;
+					};
 					FAD891852EEB9B54004DCA0E = {
 						CreatedOnToolsVersion = 26.1.1;
 					};
@@ -136,16 +207,26 @@
 			projectRoot = "";
 			targets = (
 				FAD891852EEB9B54004DCA0E /* ZMTemplate */,
+				63174A952EF489F3000BDD5E /* NotificationService */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		63174A942EF489F3000BDD5E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63174AF02EF48A98000BDD5E /* ZMTemplate.xcconfig in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FAD891842EEB9B54004DCA0E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				FAD892212EEBB670004DCA0E /* AppInfo.plist in Resources */,
+				63174AEF2EF48A98000BDD5E /* ZMTemplate.xcconfig in Resources */,
 				FAEA63502EF261410033A6AD /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -153,6 +234,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		63174A922EF489F3000BDD5E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FAD891822EEB9B54004DCA0E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -162,7 +250,67 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		63174A9C2EF489F3000BDD5E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 63174A952EF489F3000BDD5E /* NotificationService */;
+			targetProxy = 63174A9B2EF489F3000BDD5E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		63174AA02EF489F3000BDD5E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NotificationService/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NotificationService;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.emeraldcharge.play.NotificationService;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		63174AA12EF489F3000BDD5E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NotificationService/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NotificationService;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.emeraldcharge.play.NotificationService;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		FAD8918F2EEB9B56004DCA0E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -365,6 +513,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		63174A9F2EF489F3000BDD5E /* Build configuration list for PBXNativeTarget "NotificationService" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63174AA02EF489F3000BDD5E /* Debug */,
+				63174AA12EF489F3000BDD5E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		FAD891812EEB9B54004DCA0E /* Build configuration list for PBXProject "ZMTemplate" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
