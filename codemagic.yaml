@@ -10,7 +10,7 @@ workflows:
           XCODE_SCHEME: "ZMTemplate"
           BUNDLE_ID: "com.emeraldcharge.play"
           APP_STORE_APPLE_ID: 6755790079
-          CERTIFICATE_PRIVATE_KEY_PASSWORD: "700700"
+#          CERTIFICATE_PRIVATE_KEY_PASSWORD: "700700"
         xcode: latest
         cocoapods: default
       triggering:
@@ -30,7 +30,7 @@ workflows:
         - name: Use system default keychain
           script: keychain add-certificates
         - name: Fetch signing files (NotificationService)
-          script: app-store-connect fetch-signing-files com.emeraldcharge.play.NotificationService --type IOS_APP_STORE --platform=IOS --create --certificate-key-password="$CERTIFICATE_PRIVATE_KEY_PASSWORD"
+          script: app-store-connect fetch-signing-files com.emeraldcharge.play.NotificationService --type IOS_APP_STORE --platform=IOS --create 
         - name: Set up code signing
           script: xcode-project use-profiles
         - name: Increment build number
